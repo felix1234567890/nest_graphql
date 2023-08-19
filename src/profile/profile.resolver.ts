@@ -9,7 +9,6 @@ import {
 } from '@nestjs/graphql';
 import { Profile } from './profile.entity';
 import { EmployeeService } from 'src/employee/employee.service';
-import { GraphQLUpload } from 'apollo-server-express';
 import { createWriteStream, ReadStream } from 'fs';
 import { ProfileService } from './profile.service';
 
@@ -28,7 +27,6 @@ export class ProfileResolver {
   ) {}
   @Mutation(returns => Boolean, { nullable: true })
   async uploadFile(
-    @Args({ name: 'file', type: () => GraphQLUpload })
     { createReadStream, filename }: FileUpload,
     @Args('id', { type: () => Int }) id: number,
   ): Promise<boolean> {

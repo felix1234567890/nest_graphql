@@ -5,7 +5,7 @@ import {
   NotFoundException,
 } from '@nestjs/common';
 import { Timesheet } from './timesheet.entity';
-import { TimesheetDto, UpdateTimesheetDto } from './timesheet.dto';
+import { UpdateTimesheetDto } from './timesheet.dto';
 
 @Injectable()
 export class TimesheetService {
@@ -14,7 +14,7 @@ export class TimesheetService {
     private timesheetRepository: typeof Timesheet,
   ) {}
 
-  async createTimesheet(timesheet: TimesheetDto): Promise<Timesheet> {
+  async createTimesheet(timesheet: Partial<Timesheet>): Promise<Timesheet> {
     const existingTimesheet = await this.timesheetRepository.findOne({
       where: { date: timesheet.date },
     });

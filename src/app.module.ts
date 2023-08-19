@@ -4,13 +4,14 @@ import { EmployeeModule } from './employee/employee.module';
 import { ProfileModule } from './profile/profile.module';
 import { TimesheetModule } from './timesheet/timesheet.module';
 import { PubSub } from 'graphql-subscriptions';
+import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 
 @Module({
   imports: [
-    GraphQLModule.forRoot({
-      autoSchemaFile: true,
-      uploads: { maxFileSize: 10000000 },
-      installSubscriptionHandlers: true,
+    GraphQLModule.forRoot<ApolloDriverConfig>({
+     driver: ApolloDriver,
+     playground:true,
+     autoSchemaFile:true
     }),
     EmployeeModule,
     ProfileModule,

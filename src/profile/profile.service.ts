@@ -1,6 +1,5 @@
 import { Injectable, Inject, NotFoundException } from '@nestjs/common';
 import { Profile } from './profile.entity';
-import { ProfileDto } from './profile.dto';
 import { readdir, unlink } from 'fs';
 
 @Injectable()
@@ -8,7 +7,7 @@ export class ProfileService {
   constructor(
     @Inject('PROFILE_REPOSITORY') private profileRepository: typeof Profile,
   ) {}
-  async createProfile(profile: ProfileDto): Promise<Profile> {
+  async createProfile(profile: Partial<Profile>): Promise<Profile> {
     return await this.profileRepository.create(profile);
   }
   async getProfiles(): Promise<Profile[]> {

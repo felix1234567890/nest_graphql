@@ -7,8 +7,9 @@ import {
   IsOptional,
 } from 'class-validator';
 import { Field, InputType } from '@nestjs/graphql';
+
 @InputType()
-export class EmployeeDto {
+export class EmployeeDto  {
   @MinLength(2)
   @IsNotEmpty()
   @IsString()

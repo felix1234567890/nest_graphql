@@ -1,7 +1,6 @@
 import { Injectable, Inject, NotFoundException } from '@nestjs/common';
 import { Employee } from './employee.entity';
 import { EmployeeDto, UpdateEmployeeDto } from './employee.dto';
-import { Timesheet } from 'src/timesheet/timesheet.entity';
 
 @Injectable()
 export class EmployeeService {
@@ -20,7 +19,7 @@ export class EmployeeService {
     if (!employee) throw new NotFoundException();
     return employee;
   }
-  async createEmployee(employee: EmployeeDto): Promise<Employee> {
+  async createEmployee(employee: Partial<Employee>): Promise<Employee> {
     try {
       return await this.employeeRepository.create(employee);
     } catch (e) {
